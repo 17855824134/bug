@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>整蛊程序</title>
+    <style>
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="popup">
+        <p id="question">晚上愿意和我一起吃个晚饭嘛？</p>
+        <button onclick="agree()">愿意</button>
+        <button onclick="disagree()">不愿意</button>
+    </div>
+
+    <script>
+        const questions = [
+            "晚上愿意和我一起吃个晚饭嘛？",
+            "那我们晚上去图书馆？",
+            "要不要一起去散步？",
+            "去看个电影怎么样？",
+            "一起去喝咖啡吗？"
+        ];
+        let currentQuestion = 0;
+
+        function agree() {
+            document.querySelector('.popup').style.display = 'none';
+            document.querySelector('.overlay').style.display = 'none';
+            alert('太棒了！期待我们的约会！');
+        }
+
+        function disagree() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                document.getElementById('question').innerText = questions[currentQuestion];
+            } else {
+                alert('好吧，那再见了。');
+                document.querySelector('.popup').style.display = 'none';
+                document.querySelector('.overlay').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
